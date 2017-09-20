@@ -6,29 +6,41 @@ import TableItem from './TableItem.jsx';
 class TableList extends Component {
     constructor(props) {
         super(props);
-        this.url_data = 'http://www.filltext.com/?rows=100&fname=%7BfirstName%7D&lname=%7BlastName%7D&city=%7Bcity%7D';
+        this.url_data = 'http://www.filltext.com/?rows=100&fname={firstName}&lname={lastName}&city={city}';
         this.state = {
             data: []
         };
     }
 
     componentWillMount() {
-        Axios.get(this.url_data).then(response => this.setState({data: response.data}));
+        this.mountData();
+    }
+
+    mountData() {
+        const dataFromServerPromise = Axios.get(this.url_data);
+        dataFromServerPromise.then(response => this.setData( response.data ));
+    }
+
+    setData(data) {
+        this.setState({data});
     }
 
     render() {
+        const itemsResult = this.state.data.map((item, id) => {
+            return (
+                <TableItem
+                    key={id}
+                    fname={item.fname}
+                    lname={item.lname}
+                    city={item.city}
+                />)
+        });
+
         return (
             <table className="table table-hover table-bordered">
                 <TableHead />
                 <tbody>
-                {this.state.data.map((item, i) => {
-                    return (
-                        <TableItem
-                            key={i}
-                            fname={item.fname}
-                            lname={item.lname} city={item.city}
-                        />)
-                })}
+                    {itemsResult}
                 </tbody>
             </table>
         )
