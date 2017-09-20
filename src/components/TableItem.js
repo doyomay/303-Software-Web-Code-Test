@@ -1,22 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class TableItem extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <tr>
-                <td>
-                    {this.props.fname}
-                </td>
-                <td>
-                    {this.props.lname}
-                </td>
-                <td>{this.props.city}</td>
-            </tr>
-        )
-    }
+function TableItem({fname, lname, city}) {
+    return (
+        <tr>
+            <td>
+                {fname}
+            </td>
+            <td>
+                {lname}
+            </td>
+            <td>{city}</td>
+        </tr>
+    )
 }
 
 export default TableItem;
