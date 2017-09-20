@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import TableList from './components/TableList'
+import TableList from './components/TableList.jsx'
 
 class App extends Component {
     render() {
@@ -15,7 +15,7 @@ class App extends Component {
                 <section className='container'>
                     <div className="row">
                         <div className="col-xs-12">
-                            <TableList/>
+                            <TableList />
                         </div>
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
-import TableHead from './TableHead';
-import TableItem from './TableItem';
+import TableHead from './TableHead.jsx';
+import TableItem from './TableItem.jsx';
 
 class TableList extends Component {
     constructor(props) {
@@ -19,10 +19,16 @@ class TableList extends Component {
     render() {
         return (
             <table className="table table-hover table-bordered">
-                <TableHead/>
+                <TableHead />
                 <tbody>
-                {this.state.data.map((item, i) => <TableItem key={i} fname={item.fname} lname={item.lname}
-                                                             city={item.city}/>)}
+                {this.state.data.map((item, i) => {
+                    return (
+                        <TableItem
+                            key={i}
+                            fname={item.fname}
+                            lname={item.lname} city={item.city}
+                        />)
+                })}
                 </tbody>
             </table>
         )
